@@ -20,24 +20,81 @@ const statusEl = document.getElementById('status');
 const listEl = document.getElementById('layer-list');
 const activeLayers = new Map();
 
+// function layerStylePreset(layerKey) {
+//   const key = layerKey.toLowerCase();
+//   if (layerKey.endsWith('.bounds')) {
+//     return { color: '#d15a2a', weight: 3, fillOpacity: 0.08, dashArray: '8 6' };
+//   }
+//   if (layerKey.endsWith('.building')) {
+//     return { color: '#1c7ed6', weight: 1.5, fillOpacity: 0.55 };
+//   }
+//   if (layerKey.endsWith('.garbadge')) {
+//     return { color: '#2b8a3e', weight: 1, fillOpacity: 0.95, radius: 7 };
+//   }
+//   if (layerKey.endsWith('.road')) {
+//     return { color: '#f08c00', weight: 4, fillOpacity: 0.1 };
+//   }
+//   if (key.includes('instruction-generated') || key.includes('instruction_generated') || key.includes('instruction')) {
+//     return { color: '#862e9c', weight: 5, fillOpacity: 0.1, dashArray: '10 6' };
+//   }
+//   return { color: '#0b7285', weight: 2, fillOpacity: 0.25 };
+// }
+
 function layerStylePreset(layerKey) {
   const key = layerKey.toLowerCase();
+
   if (layerKey.endsWith('.bounds')) {
-    return { color: '#d9480f', weight: 3, fillOpacity: 0.08, dashArray: '8 6' };
+    return { 
+      color: '#111827',        // đen xám đậm
+      weight: 3,
+      fillOpacity: 0.05,
+      dashArray: '4 4'
+    };
   }
+
   if (layerKey.endsWith('.building')) {
-    return { color: '#1c7ed6', weight: 1.5, fillOpacity: 0.55 };
+    return { 
+      color: '#e03131',        // đỏ đậm
+      weight: 2,
+      fillOpacity: 0.65
+    };
   }
+
   if (layerKey.endsWith('.garbadge')) {
-    return { color: '#2b8a3e', weight: 1, fillOpacity: 0.95, radius: 7 };
+    return { 
+      color: '#7048e8',        // tím sáng
+      weight: 1.5,
+      fillOpacity: 0.9,
+      radius: 8
+    };
   }
+
   if (layerKey.endsWith('.road')) {
-    return { color: '#f08c00', weight: 4, fillOpacity: 0.1 };
+    return { 
+      color: '#00bcd4',        // cyan sáng
+      weight: 5,
+      fillOpacity: 0.2
+    };
   }
-  if (key.includes('instruction-generated') || key.includes('instruction_generated') || key.includes('instruction')) {
-    return { color: '#862e9c', weight: 5, fillOpacity: 0.1, dashArray: '10 6' };
+
+  if (
+    key.includes('instruction-generated') ||
+    key.includes('instruction_generated') ||
+    key.includes('instruction')
+  ) {
+    return { 
+      color: '#ff006e',        // hồng neon
+      weight: 6,
+      fillOpacity: 0.15,
+      dashArray: '6 10'
+    };
   }
-  return { color: '#0b7285', weight: 2, fillOpacity: 0.25 };
+
+  return { 
+    color: '#495057',          // xám trung tính
+    weight: 2,
+    fillOpacity: 0.3
+  };
 }
 
 function styleForGeometry(feature, style) {
